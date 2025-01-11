@@ -2,7 +2,8 @@ package org.firstinspires.ftc.teamcode.base.structure;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.base.DaggerMainDefaultComponent;
+import org.firstinspires.ftc.teamcode.base.Gamepads;
+import org.firstinspires.ftc.teamcode.base.di.DaggerMainDefaultComponent;
 import org.firstinspires.ftc.teamcode.base.messaging.IMessageBroadcaster;
 import org.firstinspires.ftc.teamcode.base.di.MainDefaultComponent;
 import org.firstinspires.ftc.teamcode.base.di.MainModule;
@@ -30,7 +31,7 @@ public abstract class OpModeBase extends LinearOpMode {
         startup();
 
         MainDefaultComponent defaultComponent = DaggerMainDefaultComponent.builder()
-                        .mainModule(new MainModule(telemetry, hardwareMap)).build();
+                        .mainModule(new MainModule(telemetry, hardwareMap, new Gamepads(gamepad1, gamepad2))).build();
         defaultComponent.inject(this);
 
         messageBroadcaster.addReceiverRange(new HashSet<>(components));
