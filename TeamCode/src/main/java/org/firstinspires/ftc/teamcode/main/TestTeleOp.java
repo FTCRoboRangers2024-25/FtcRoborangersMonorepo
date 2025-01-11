@@ -6,6 +6,7 @@ import org.firstinspires.ftc.teamcode.base.Gamepads;
 import org.firstinspires.ftc.teamcode.base.di.MainModule;
 import org.firstinspires.ftc.teamcode.base.structure.OpModeBase;
 import org.firstinspires.ftc.teamcode.main.components.ControllerTelemetry;
+import org.firstinspires.ftc.teamcode.main.components.IntakeExtension;
 import org.firstinspires.ftc.teamcode.main.components.MecanumBase;
 import org.firstinspires.ftc.teamcode.main.components.MecanumJoystick;
 
@@ -22,6 +23,9 @@ public class TestTeleOp extends OpModeBase {
     @Inject
     public ControllerTelemetry controllerTelemetry;
 
+    @Inject
+    public IntakeExtension intakeExtension;
+
     @Override
     public void startup() {
         MainComponent main = DaggerMainComponent.builder()
@@ -33,5 +37,6 @@ public class TestTeleOp extends OpModeBase {
         addComponent(mecanumBase);
         addComponent(mecanumJoystick);
         addComponent(controllerTelemetry);
+        addComponent(intakeExtension);
     }
 }
