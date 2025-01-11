@@ -7,13 +7,14 @@ import org.firstinspires.ftc.teamcode.base.di.MainModule;
 import org.firstinspires.ftc.teamcode.base.structure.OpModeBase;
 import org.firstinspires.ftc.teamcode.main.components.ControllerTelemetry;
 import org.firstinspires.ftc.teamcode.main.components.IntakeExtension;
+import org.firstinspires.ftc.teamcode.main.components.IntakeExtensionJoystick;
 import org.firstinspires.ftc.teamcode.main.components.MecanumBase;
 import org.firstinspires.ftc.teamcode.main.components.MecanumJoystick;
 
 import javax.inject.Inject;
 
 @TeleOp(name = "Test")
-public class TestTeleOp extends OpModeBase {
+public class MainTeleOp extends OpModeBase {
     @Inject
     public MecanumBase mecanumBase;
 
@@ -25,6 +26,9 @@ public class TestTeleOp extends OpModeBase {
 
     @Inject
     public IntakeExtension intakeExtension;
+
+    @Inject
+    public IntakeExtensionJoystick intakeExtensionJoystick;
 
     @Override
     public void startup() {
@@ -38,5 +42,6 @@ public class TestTeleOp extends OpModeBase {
         addComponent(mecanumJoystick);
         addComponent(controllerTelemetry);
         addComponent(intakeExtension);
+        addComponent(intakeExtensionJoystick);
     }
 }

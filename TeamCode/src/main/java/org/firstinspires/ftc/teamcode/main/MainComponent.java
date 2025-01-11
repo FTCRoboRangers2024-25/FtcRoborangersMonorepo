@@ -11,5 +11,5 @@ import dagger.Component;
 @Singleton
 public interface MainComponent {
     // write void inject(T object) for all types that will use this class
-    void inject(TestTeleOp t);
+    void inject(MainTeleOp t);
 }
