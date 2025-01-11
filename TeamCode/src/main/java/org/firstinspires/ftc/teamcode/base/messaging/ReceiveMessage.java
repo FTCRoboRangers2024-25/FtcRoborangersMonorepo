@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.utilities;
+package org.firstinspires.ftc.teamcode.base.messaging;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

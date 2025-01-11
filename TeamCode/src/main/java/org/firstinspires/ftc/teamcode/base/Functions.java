@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.utilities;
+package org.firstinspires.ftc.teamcode.base;
 
 public class Functions {
     public static double LinearInterpolation(double a, double b, double t) {

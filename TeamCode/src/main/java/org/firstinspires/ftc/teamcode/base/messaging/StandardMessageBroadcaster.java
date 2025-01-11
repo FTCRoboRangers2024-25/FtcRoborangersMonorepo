@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.teamcode.utilities;
+package org.firstinspires.ftc.teamcode.base.messaging;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashSet;
+
+import javax.inject.Inject;
 
 public class StandardMessageBroadcaster implements IMessageBroadcaster {
 
@@ -20,9 +22,10 @@ public class StandardMessageBroadcaster implements IMessageBroadcaster {
         }
     }
 
-    private final HashSet<ReceiverMethod> messageReceiverMethods = new HashSet<>();
     private final Telemetry telemetry;
+    private final HashSet<ReceiverMethod> messageReceiverMethods = new HashSet<>();
 
+    @Inject
     public StandardMessageBroadcaster(Telemetry telemetry) {
         this.telemetry = telemetry;
     }
