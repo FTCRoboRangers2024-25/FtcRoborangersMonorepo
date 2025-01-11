@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.base.structure;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.base.Gamepads;
 import org.firstinspires.ftc.teamcode.base.di.DaggerMainDefaultComponent;
@@ -12,7 +12,7 @@ import java.util.HashSet;
 
 import javax.inject.Inject;
 
-public abstract class OpModeBase extends LinearOpMode {
+public abstract class OpModeBase extends OpMode {
     @Inject public IMessageBroadcaster messageBroadcaster;
 
     protected final HashSet<Component> components = new HashSet<>();
@@ -27,11 +27,11 @@ public abstract class OpModeBase extends LinearOpMode {
     private boolean isAuto = false;
 
     @Override
-    public void runOpMode() {
+    public void init() {
         startup();
 
         MainDefaultComponent defaultComponent = DaggerMainDefaultComponent.builder()
-                        .mainModule(new MainModule(telemetry, hardwareMap, new Gamepads(gamepad1, gamepad2))).build();
+                .mainModule(new MainModule(telemetry, hardwareMap, new Gamepads(gamepad1, gamepad2))).build();
         defaultComponent.inject(this);
 
         messageBroadcaster.addReceiverRange(new HashSet<>(components));
@@ -39,21 +39,25 @@ public abstract class OpModeBase extends LinearOpMode {
         for (Component component : components) {
             component.init(isAuto);
         }
+    }
 
-        waitForStart();
+    @Override
+    public void start() {
+        for (Component component : components) {
+            component.onStart(isAuto);
+        }
+    }
 
-        if (opModeIsActive()) {
-            if (!isAuto) {
-                while (opModeIsActive()) {
-                    for (Component component : components) {
-                        component.loop();
-                    }
-
-                    telemetry.update();
-                }
-            } else {
-                autonomous();
+    @Override
+    public void loop() {
+        if (!isAuto) {
+            for (Component component : components) {
+                component.loop();
             }
+
+            telemetry.update();
+        } else {
+            autonomous();
         }
     }
 
