@@ -10,4 +10,8 @@ public abstract class Component {
     public void loop() {
 
     }
+
+    public void onStop() {
+
+    }
 }

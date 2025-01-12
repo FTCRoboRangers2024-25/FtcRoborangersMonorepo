@@ -61,6 +61,13 @@ public abstract class OpModeBase extends OpMode {
         }
     }
 
+    @Override
+    public void stop() {
+        for (Component component : components) {
+            component.onStop();
+        }
+    }
+
     protected void isAutonomous() {
         isAuto = true;
     }
