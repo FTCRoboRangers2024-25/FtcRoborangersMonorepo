@@ -10,6 +10,8 @@ import org.firstinspires.ftc.teamcode.main.components.IntakeExtension;
 import org.firstinspires.ftc.teamcode.main.components.IntakeExtensionJoystick;
 import org.firstinspires.ftc.teamcode.main.components.MecanumBase;
 import org.firstinspires.ftc.teamcode.main.components.MecanumJoystick;
+import org.firstinspires.ftc.teamcode.main.components.OutputExtension;
+import org.firstinspires.ftc.teamcode.main.components.OutputExtensionJoystick;
 
 import javax.inject.Inject;
 
@@ -30,6 +32,12 @@ public class MainTeleOp extends OpModeBase {
     @Inject
     public IntakeExtensionJoystick intakeExtensionJoystick;
 
+    @Inject
+    public OutputExtension outputExtension;
+
+    @Inject
+    public OutputExtensionJoystick outputExtensionJoystick;
+
     @Override
     public void startup() {
         MainComponent main = DaggerMainComponent.builder()
@@ -41,7 +49,9 @@ public class MainTeleOp extends OpModeBase {
         addComponent(mecanumBase);
         addComponent(mecanumJoystick);
         addComponent(controllerTelemetry);
-        addComponent(intakeExtension);
-        addComponent(intakeExtensionJoystick);
+        //addComponent(intakeExtension);
+        //addComponent(intakeExtensionJoystick);
+        //addComponent(outputExtension);
+        //addComponent(outputExtensionJoystick);
     }
 }

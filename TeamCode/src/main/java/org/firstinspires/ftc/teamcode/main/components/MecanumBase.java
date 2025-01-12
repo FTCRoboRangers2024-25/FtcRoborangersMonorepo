@@ -41,4 +41,9 @@ public class MecanumBase extends Component {
     public void stop() {
         mecanum.stop();
     }
+
+    @Override
+    public void onStop() {
+        stop();
+    }
 }

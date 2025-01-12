@@ -39,7 +39,7 @@ public class IntakeExtensionJoystick extends Component {
 
     @Override
     public void loop() {
-        double joystickInput = targetTolerance(0, RobotConstants.STICK_TOLERANCE, gamepads.gamepad1.getRightY());
+        double joystickInput = targetTolerance(0, RobotConstants.STICK_TOLERANCE, gamepads.gamepad2.getLeftY());
         double scaledInput = joystickInput * intakeExtensionSpeed * time.seconds();
         currentExtension = clamp01(currentExtension + scaledInput);
 
