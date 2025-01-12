@@ -7,7 +7,9 @@ import org.firstinspires.ftc.teamcode.base.structure.Component;
 import org.firstinspires.ftc.teamcode.main.RobotConstants;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class MecanumJoystick extends Component {
     private final Gamepads gamepads;
     private final MecanumBase mecanumBase;

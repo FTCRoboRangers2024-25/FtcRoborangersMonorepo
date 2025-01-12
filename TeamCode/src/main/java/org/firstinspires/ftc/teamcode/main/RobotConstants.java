@@ -9,5 +9,8 @@ public class RobotConstants {
     public static final String INTAKE_SERVO_LEFT = "intake left";
     public static final String INTAKE_SERVO_RIGHT = "intake right";
 
+    public static final String PARALLEL_ENCODER = "parallel encoder";
+    public static final String PERPENDICULAR_ENCODER = "perpendicular encoder";
+
     public static final double STICK_TOLERANCE = 0.1;
 }

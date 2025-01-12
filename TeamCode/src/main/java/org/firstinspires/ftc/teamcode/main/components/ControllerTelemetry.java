@@ -8,7 +8,9 @@ import org.firstinspires.ftc.teamcode.base.Gamepads;
 import org.firstinspires.ftc.teamcode.base.structure.Component;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class ControllerTelemetry extends Component {
     private final Gamepads gamepads;
     private final Telemetry telemetry;

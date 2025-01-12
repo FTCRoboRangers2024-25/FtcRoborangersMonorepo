@@ -10,7 +10,9 @@ import org.firstinspires.ftc.teamcode.base.structure.Component;
 import org.firstinspires.ftc.teamcode.main.RobotConstants;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class IntakeExtensionJoystick extends Component {
     private final IntakeExtension intakeExtension;
     private final Gamepads gamepads;

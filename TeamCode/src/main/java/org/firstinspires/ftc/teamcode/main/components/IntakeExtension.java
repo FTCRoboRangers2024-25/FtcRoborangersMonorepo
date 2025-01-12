@@ -11,7 +11,9 @@ import org.firstinspires.ftc.teamcode.base.structure.Component;
 import org.firstinspires.ftc.teamcode.main.RobotConstants;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class IntakeExtension extends Component {
     private final HardwareMap hardwareMap;
     private final Telemetry telemetry;
