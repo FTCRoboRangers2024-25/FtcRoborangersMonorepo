@@ -12,8 +12,8 @@ public class RobotConstants {
     public static final String OUTPUT_EXTENSION_LEFT = "output extension left";
     public static final String OUTPUT_EXTENSION_RIGHT = "output extension right";
 
-    public static final String PARALLEL_ENCODER = "parallel encoder";
-    public static final String PERPENDICULAR_ENCODER = "perpendicular encoder";
+    public static final String PARALLEL_ENCODER = "parallel";
+    public static final String PERPENDICULAR_ENCODER = "front left";
 
     public static final double STICK_TOLERANCE = 0.1;
 }

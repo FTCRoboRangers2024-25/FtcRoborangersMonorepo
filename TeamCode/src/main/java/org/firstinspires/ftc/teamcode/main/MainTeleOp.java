@@ -5,9 +5,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.base.Gamepads;
 import org.firstinspires.ftc.teamcode.base.di.MainModule;
 import org.firstinspires.ftc.teamcode.base.structure.OpModeBase;
+import org.firstinspires.ftc.teamcode.drive.TwoWheelTrackingLocalizer;
 import org.firstinspires.ftc.teamcode.main.components.ControllerTelemetry;
 import org.firstinspires.ftc.teamcode.main.components.IntakeExtension;
 import org.firstinspires.ftc.teamcode.main.components.IntakeExtensionJoystick;
+import org.firstinspires.ftc.teamcode.main.components.LocalizerTelemetry;
 import org.firstinspires.ftc.teamcode.main.components.MecanumBase;
 import org.firstinspires.ftc.teamcode.main.components.MecanumJoystick;
 import org.firstinspires.ftc.teamcode.main.components.OutputExtension;
@@ -15,7 +17,7 @@ import org.firstinspires.ftc.teamcode.main.components.OutputExtensionJoystick;
 
 import javax.inject.Inject;
 
-@TeleOp(name = "Test")
+@TeleOp(name = "Main")
 public class MainTeleOp extends OpModeBase {
     @Inject
     public MecanumBase mecanumBase;
@@ -26,17 +28,20 @@ public class MainTeleOp extends OpModeBase {
     @Inject
     public ControllerTelemetry controllerTelemetry;
 
-    @Inject
-    public IntakeExtension intakeExtension;
+//    @Inject
+//    public IntakeExtension intakeExtension;
+//
+//    @Inject
+//    public IntakeExtensionJoystick intakeExtensionJoystick;
+//
+//    @Inject
+//    public OutputExtension outputExtension;
+//
+//    @Inject
+//    public OutputExtensionJoystick outputExtensionJoystick;
 
     @Inject
-    public IntakeExtensionJoystick intakeExtensionJoystick;
-
-    @Inject
-    public OutputExtension outputExtension;
-
-    @Inject
-    public OutputExtensionJoystick outputExtensionJoystick;
+    public LocalizerTelemetry localizerTelemetry;
 
     @Override
     public void startup() {
@@ -49,9 +54,10 @@ public class MainTeleOp extends OpModeBase {
         addComponent(mecanumBase);
         addComponent(mecanumJoystick);
         addComponent(controllerTelemetry);
-        //addComponent(intakeExtension);
-        //addComponent(intakeExtensionJoystick);
-        //addComponent(outputExtension);
-        //addComponent(outputExtensionJoystick);
+        addComponent(localizerTelemetry);
+//        addComponent(intakeExtension);
+//        addComponent(intakeExtensionJoystick);
+//        addComponent(outputExtension);
+//        addComponent(outputExtensionJoystick);
     }
 }

@@ -40,10 +40,10 @@ public class ControllerTelemetry extends Component {
         telemetry.addData(gamepadName + " Right Stick Y", gamepadEx.getRightY());
 
         // Iterate through button states
-        telemetry.addData(gamepadName + " A", gamepadEx.getGamepadButton(GamepadKeys.Button.A));
-        telemetry.addData(gamepadName + " B", gamepadEx.getGamepadButton(GamepadKeys.Button.B));
-        telemetry.addData(gamepadName + " X", gamepadEx.getGamepadButton(GamepadKeys.Button.X));
-        telemetry.addData(gamepadName + " Y", gamepadEx.getGamepadButton(GamepadKeys.Button.Y));
+        telemetry.addData(gamepadName + " A", gamepadEx.getButton(GamepadKeys.Button.A));
+        telemetry.addData(gamepadName + " B", gamepadEx.getButton(GamepadKeys.Button.B));
+        telemetry.addData(gamepadName + " X", gamepadEx.getButton(GamepadKeys.Button.X));
+        telemetry.addData(gamepadName + " Y", gamepadEx.getButton(GamepadKeys.Button.Y));
         telemetry.addData(gamepadName + " Left Bumper", gamepadEx.getButton(GamepadKeys.Button.LEFT_BUMPER));
         telemetry.addData(gamepadName + " Right Bumper", gamepadEx.getButton(GamepadKeys.Button.RIGHT_BUMPER));
         telemetry.addData(gamepadName + " Start", gamepadEx.getButton(GamepadKeys.Button.START));
