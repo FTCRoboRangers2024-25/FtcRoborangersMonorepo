@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.base.structure;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.base.Gamepads;
@@ -28,6 +30,8 @@ public abstract class OpModeBase extends OpMode {
 
     @Override
     public void init() {
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+
         startup();
 
         MainDefaultComponent defaultComponent = DaggerMainDefaultComponent.builder()
