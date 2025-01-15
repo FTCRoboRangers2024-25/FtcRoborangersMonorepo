@@ -34,12 +34,15 @@ public class OutputExtensionJoystick extends Component {
         double joystickInput = targetTolerance(0, RobotConstants.STICK_TOLERANCE, gamepads.gamepad2.getRightY());
 
         if (joystickInput != 0 || !goingToPos) {
-            outputExtension.set(joystickInput);
+            outputExtension.set(-joystickInput);
             goingToPos = false;
-        } else {
-            if (gamepads.gamepad2.getButton(GamepadKeys.Button.A)) {
-                outputExtension.setTargetPosition(1000);
-            }
+        }
+
+        if (gamepads.gamepad2.getButton(GamepadKeys.Button.A)) {
+            outputExtension.setTargetPosition(1000);
+            goingToPos = true;
+        } else if (gamepads.gamepad2.getButton(GamepadKeys.Button.B)) {
+            outputExtension.setTargetPosition(0);
             goingToPos = true;
         }
     }

@@ -12,4 +12,5 @@ import dagger.Component;
 public interface MainComponent {
     // write void inject(T object) for all types that will use this class
     void inject(MainTeleOp t);
+    void inject(TestingTeleOp t);
 }

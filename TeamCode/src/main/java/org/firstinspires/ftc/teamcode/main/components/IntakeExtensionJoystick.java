@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.main.components;
 import static org.firstinspires.ftc.teamcode.base.Functions.clamp01;
 import static org.firstinspires.ftc.teamcode.base.Functions.targetTolerance;
 
+import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.base.Gamepads;
@@ -16,10 +17,10 @@ import javax.inject.Singleton;
 public class IntakeExtensionJoystick extends Component {
     private final IntakeExtension intakeExtension;
     private final Gamepads gamepads;
-    private final double intakeExtensionSpeed = 1;
 
     private double currentExtension;
-    private ElapsedTime time;
+
+    private boolean flag;
 
     @Inject
     public IntakeExtensionJoystick(Gamepads gamepads, IntakeExtension intakeExtension) {
@@ -29,22 +30,32 @@ public class IntakeExtensionJoystick extends Component {
 
     @Override
     public void init(boolean isAuto) {
-        time = new ElapsedTime();
-    }
 
-    @Override
-    public void onStart(boolean isAuto) {
-        time.reset();
     }
 
     @Override
     public void loop() {
-        double joystickInput = targetTolerance(0, RobotConstants.STICK_TOLERANCE, gamepads.gamepad2.getLeftY());
-        double scaledInput = joystickInput * intakeExtensionSpeed * time.seconds();
-        currentExtension = clamp01(currentExtension + scaledInput);
+        if (gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_UP) && !flag) {
+            currentExtension = 1;
+            flag = true;
+        } else if (gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_LEFT) && !flag) {
+            currentExtension -= 0.1;
+            flag = true;
+        } else if (gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_DOWN) && !flag) {
+            currentExtension = 0;
+            flag = true;
+        } else if (gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_RIGHT) && !flag) {
+            currentExtension += 0.1;
+            flag = true;
+        } else if (!gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_UP) &&
+                !gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_DOWN) &&
+                !gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_LEFT) &&
+                !gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_RIGHT)) {
+            flag = false;
+        }
+
+        currentExtension = clamp01(currentExtension);
 
         intakeExtension.extendIntake(currentExtension);
-
-        time.reset();
     }
 }

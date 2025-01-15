@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.base.structure.Component;
+import org.firstinspires.ftc.teamcode.main.CrazyServo;
 import org.firstinspires.ftc.teamcode.main.RobotConstants;
 
 import javax.inject.Inject;
@@ -15,24 +16,22 @@ import javax.inject.Singleton;
 
 @Singleton
 public class IntakeExtension extends Component {
-    private final HardwareMap hardwareMap;
     private final Telemetry telemetry;
 
-    private ServoEx servoLeft, servoRight;
+    private CrazyServo servoLeft, servoRight;
 
     private double extension;
 
     @Inject
     public IntakeExtension(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
-        this.hardwareMap = hardwareMap;
+
+        servoLeft = new CrazyServo(new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_LEFT, 0, 180), 0.3, 0.7);
+        servoRight = new CrazyServo(new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_RIGHT, 0, 180), 0.3, 0.7);
     }
 
     @Override
     public void init(boolean isAuto) {
-        servoLeft = new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_LEFT, 0, 180);
-        servoRight = new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_RIGHT, 0, 180);
-
         closeIntake();
     }
 
@@ -53,7 +52,7 @@ public class IntakeExtension extends Component {
         extendIntake(0);
     }
 
-    public void extendIntake() {
+    public void extendIntakeFully() {
         extendIntake(1);
     }
 }

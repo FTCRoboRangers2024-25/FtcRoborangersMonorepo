@@ -31,6 +31,6 @@ public class MecanumJoystick extends Component {
         double strafeSpeed = targetTolerance(0, RobotConstants.STICK_TOLERANCE, gamepads.gamepad1.getLeftX());
         double turnSpeed = targetTolerance(0, RobotConstants.STICK_TOLERANCE, gamepads.gamepad1.getRightX());
 
-        mecanumBase.robotCentric(forwardSpeed, strafeSpeed, turnSpeed);
+        mecanumBase.fieldCentric(forwardSpeed, strafeSpeed, turnSpeed);
     }
 }
