@@ -38,19 +38,19 @@ public class IntakeExtensionJoystick extends Component {
         if (gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_UP) && !flag) {
             currentExtension = 1;
             flag = true;
-        } else if (gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_LEFT) && !flag) {
+        } else if (gamepads.gamepad2.isDown(GamepadKeys.Button.LEFT_BUMPER) && !flag) {
             currentExtension -= 0.1;
             flag = true;
         } else if (gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_DOWN) && !flag) {
             currentExtension = 0;
             flag = true;
-        } else if (gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_RIGHT) && !flag) {
+        } else if (gamepads.gamepad2.isDown(GamepadKeys.Button.RIGHT_BUMPER) && !flag) {
             currentExtension += 0.1;
             flag = true;
         } else if (!gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_UP) &&
                 !gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_DOWN) &&
-                !gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_LEFT) &&
-                !gamepads.gamepad2.isDown(GamepadKeys.Button.DPAD_RIGHT)) {
+                !gamepads.gamepad2.isDown(GamepadKeys.Button.LEFT_BUMPER) &&
+                !gamepads.gamepad2.isDown(GamepadKeys.Button.RIGHT_BUMPER)) {
             flag = false;
         }
 

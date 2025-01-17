@@ -26,8 +26,8 @@ public class IntakeExtension extends Component {
     public IntakeExtension(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
 
-        servoLeft = new CrazyServo(new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_LEFT, 0, 180), 0.3, 0.7);
-        servoRight = new CrazyServo(new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_RIGHT, 0, 180), 0.3, 0.7);
+        servoLeft = new CrazyServo(new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_LEFT, 0, 180), 0.3, 0.8);
+        servoRight = new CrazyServo(new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_RIGHT, 0, 180), 0.3, 0.8);
     }
 
     @Override

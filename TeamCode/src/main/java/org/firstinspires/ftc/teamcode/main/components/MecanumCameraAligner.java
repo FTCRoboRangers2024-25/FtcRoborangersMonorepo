@@ -15,42 +15,58 @@ public class MecanumCameraAligner extends Component {
     public static PIDCoefficients forwardPid = new PIDCoefficients();
     public static PIDCoefficients strafePid = new PIDCoefficients();
 
-    private final PIDController forwardController = new PIDController(0, 0, 0);
-    private final PIDController strafeController = new PIDController(0, 0, 0);
+    private final PIDController forwardController = new PIDController(0.002, 0.04, 0);
+    private final PIDController strafeController = new PIDController(0.002, 0.04, 0);
     private final MecanumBase mecanumBase;
     private final Camera camera;
 
-    private final double cameraXTarget = 160, cameraYTarget = 120;
+    private final double cameraXTarget = 160, cameraYTarget = 140;
 
     @Inject
     public MecanumCameraAligner(MecanumBase mecanumBase, Camera camera) {
         this.mecanumBase = mecanumBase;
         this.camera = camera;
 
-        forwardController.setTolerance(20);
-        strafeController.setTolerance(20);
+        forwardController.setTolerance(22);
+        strafeController.setTolerance(22);
     }
 
     @Override
     public void init(boolean isAuto) {
-
+        // For FTC Dashboard
+//        forwardController.setPID(forwardPid.p, forwardPid.i, forwardPid.d);
+//        strafeController.setPID(strafePid.p, strafePid.i, strafePid.d);
     }
 
     @Override
     public void loop() {
         // For FTC Dashboard
-        forwardController.setPID(forwardPid.p, forwardPid.i, forwardPid.d);
-        strafeController.setPID(strafePid.p, strafePid.i, strafePid.d);
+//        forwardController.setPID(forwardPid.p, forwardPid.i, forwardPid.d);
+//        strafeController.setPID(strafePid.p, strafePid.i, strafePid.d);
+    }
 
-        if (camera.pipeline.isObjectDetected()) {
-            mecanumBase.robotCentric(
-                    forwardController.calculate(camera.pipeline.getCenterX(), cameraXTarget),
-                    strafeController.calculate(camera.pipeline.getCenterY(), cameraYTarget),
-                    0
-            );
-        }
-        else {
+    public boolean align() {
+        camera.loop();
+        forwardController.setSetPoint(cameraYTarget);
+        strafeController.setSetPoint(cameraXTarget);
+
+        forwardController.calculate(camera.pipeline.getCenterY());
+        strafeController.calculate(camera.pipeline.getCenterX());
+        if (!forwardController.atSetPoint() || !strafeController.atSetPoint()) {
+            if (camera.pipeline.isObjectDetected()) {
+                mecanumBase.robotCentric(
+                        forwardController.calculate(camera.pipeline.getCenterY()),
+                        -strafeController.calculate(camera.pipeline.getCenterX()),
+                        0
+                );
+            }
+            else {
+                mecanumBase.stop();
+            }
+            return false;
+        } else {
             mecanumBase.stop();
+            return true;
         }
     }
 }

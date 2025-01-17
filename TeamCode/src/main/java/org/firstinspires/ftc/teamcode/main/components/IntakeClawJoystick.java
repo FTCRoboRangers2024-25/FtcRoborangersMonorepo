@@ -36,7 +36,7 @@ public class IntakeClawJoystick extends Component {
     @Override
     public void loop() {
         if (gamepads.gamepad2.getButton(GamepadKeys.Button.Y)) {
-            intakeClaw.intakeTransfer();
+            intakeClaw.intakeInit();
         } else if (gamepads.gamepad2.getButton(GamepadKeys.Button.B)) {
             intakeClaw.intakePreGrab();
         } else if (gamepads.gamepad2.getButton(GamepadKeys.Button.X)) {
@@ -51,6 +51,6 @@ public class IntakeClawJoystick extends Component {
         }
 
         double rightJoystick = targetTolerance(0, RobotConstants.STICK_TOLERANCE, gamepads.gamepad2.getLeftX());
-        intakeClaw.setYaw((rightJoystick + 1) / 2);
+        intakeClaw.setYaw((-rightJoystick + 1) / 2);
     }
 }

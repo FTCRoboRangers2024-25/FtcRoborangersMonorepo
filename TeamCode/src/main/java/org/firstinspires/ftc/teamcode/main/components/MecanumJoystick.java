@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.main.components;
 
 import static org.firstinspires.ftc.teamcode.base.Functions.targetTolerance;
 
+import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+
 import org.firstinspires.ftc.teamcode.base.Gamepads;
 import org.firstinspires.ftc.teamcode.base.structure.Component;
 import org.firstinspires.ftc.teamcode.main.RobotConstants;
@@ -31,6 +33,12 @@ public class MecanumJoystick extends Component {
         double strafeSpeed = targetTolerance(0, RobotConstants.STICK_TOLERANCE, gamepads.gamepad1.getLeftX());
         double turnSpeed = targetTolerance(0, RobotConstants.STICK_TOLERANCE, gamepads.gamepad1.getRightX());
 
-        mecanumBase.fieldCentric(forwardSpeed, strafeSpeed, turnSpeed);
+        double multiplier = 1, turn = 1;
+        if (gamepads.gamepad1.isDown(GamepadKeys.Button.LEFT_BUMPER)) {
+            multiplier = 0.5;
+            turn = 0.4;
+        }
+
+        mecanumBase.robotCentric(forwardSpeed * multiplier, strafeSpeed * multiplier, turnSpeed * turn);
     }
 }

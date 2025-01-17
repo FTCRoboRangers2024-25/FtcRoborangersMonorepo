@@ -22,8 +22,7 @@ public abstract class OpModeBase extends OpMode {
     protected abstract void startup();
 
     protected void autonomous() {
-        telemetry.addLine("No autonomous configured");
-        telemetry.update();
+
     }
 
     private boolean isAuto = false;

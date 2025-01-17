@@ -5,16 +5,19 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.base.Gamepads;
 import org.firstinspires.ftc.teamcode.base.di.MainModule;
 import org.firstinspires.ftc.teamcode.base.structure.OpModeBase;
+import org.firstinspires.ftc.teamcode.main.components.ClawTransfer;
 import org.firstinspires.ftc.teamcode.main.components.ControllerTelemetry;
 import org.firstinspires.ftc.teamcode.main.components.IntakeClaw;
 import org.firstinspires.ftc.teamcode.main.components.IntakeClawJoystick;
 import org.firstinspires.ftc.teamcode.main.components.IntakeExtension;
 import org.firstinspires.ftc.teamcode.main.components.IntakeExtensionJoystick;
-import org.firstinspires.ftc.teamcode.main.components.LocalizerTelemetry;
 import org.firstinspires.ftc.teamcode.main.components.MecanumBase;
 import org.firstinspires.ftc.teamcode.main.components.MecanumJoystick;
+import org.firstinspires.ftc.teamcode.main.components.OutputClaw;
+import org.firstinspires.ftc.teamcode.main.components.OutputClawJoystick;
 import org.firstinspires.ftc.teamcode.main.components.OutputExtension;
 import org.firstinspires.ftc.teamcode.main.components.OutputExtensionJoystick;
+import org.firstinspires.ftc.teamcode.main.components.test;
 
 import javax.inject.Inject;
 
@@ -26,8 +29,8 @@ public class MainTeleOp extends OpModeBase {
     @Inject
     public MecanumJoystick mecanumJoystick;
 
-    @Inject
-    public ControllerTelemetry controllerTelemetry;
+//    @Inject
+//    public ControllerTelemetry controllerTelemetry;
 
     @Inject
     public IntakeExtension intakeExtension;
@@ -48,7 +51,13 @@ public class MainTeleOp extends OpModeBase {
     public IntakeClawJoystick intakeClawJoystick;
 
     @Inject
-    public LocalizerTelemetry localizerTelemetry;
+    public OutputClaw outputClaw;
+
+    @Inject
+    public OutputClawJoystick outputClawJoystick;
+
+    @Inject
+    public ClawTransfer clawTransfer;
 
     @Override
     public void startup() {
@@ -60,13 +69,15 @@ public class MainTeleOp extends OpModeBase {
 
         addComponent(mecanumBase);
         addComponent(mecanumJoystick);
-        addComponent(controllerTelemetry);
-        addComponent(localizerTelemetry);
+        //addComponent(controllerTelemetry);
         addComponent(intakeExtension);
         addComponent(intakeExtensionJoystick);
         addComponent(outputExtension);
         addComponent(outputExtensionJoystick);
         addComponent(intakeClaw);
         addComponent(intakeClawJoystick);
+        addComponent(outputClaw);
+        addComponent(outputClawJoystick);
+        addComponent(clawTransfer);
     }
 }

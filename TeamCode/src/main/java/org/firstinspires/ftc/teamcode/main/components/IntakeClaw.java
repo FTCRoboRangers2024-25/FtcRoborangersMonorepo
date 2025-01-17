@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.main.components;
 
+import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -7,63 +8,99 @@ import org.firstinspires.ftc.teamcode.base.structure.Component;
 import org.firstinspires.ftc.teamcode.main.CrazyServo;
 import org.firstinspires.ftc.teamcode.main.RobotConstants;
 
+import java.util.concurrent.CompletableFuture;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
 public class IntakeClaw extends Component {
-    private final CrazyServo pitch, yaw, claw;
+    private final CrazyServo pitch, pitch2, yaw, claw;
     private double currentPitch;
     private boolean clawClosed = false;
+    private boolean finishedPickUp = true;
+
+    private boolean transferDone = true;
 
     @Inject
     public IntakeClaw(HardwareMap hardwareMap) {
         pitch = new CrazyServo(
                 new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_PITCH, 0, 180),
-                0.1,
-                0.8);
-        pitch.innerServo.setInverted(true);
+                1,
+                0);
+        pitch2 = new CrazyServo(
+                new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_PITCH2, 0, 180),
+                1,
+                0
+        );
         yaw = new CrazyServo(
                 new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_YAW, 0, 180),
-                0.1,
+                0.05,
                 0.9);
         claw = new CrazyServo(
                 new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_CLAW, 0, 180),
                 0.13,
-                0.6);
+                0.65);
     }
 
     @Override
     public void init(boolean isAuto) {
         intakeInit();
-    }
-
-    private void intakeInit() {
-        setPitch(0);
-        setYaw(0.5);
         clawOpen();
     }
 
-    public void intakeTransfer() {
-        setPitch(0);
+    public void intakeInit() {
+        setPitch(0.1);
+        setYaw(0.5);
+        setPitch2(0.3);
+    }
+
+    public void transfer() {
+        if (transferDone) {
+            transferDone = false;
+            setPitch(0.45);
+            setPitch2(0.3);
+            setYaw(0.5);
+            try {
+                Thread.sleep(500);
+                setPitch(0);
+                setPitch2(0.5);
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+
+            } finally {
+                transferDone = true;
+            }
+        }
     }
 
     public void intakePreGrab() {
-        setPitch(0.7);
+        intakePostGrab();
         clawOpen();
     }
 
+    private void intakePostGrab() {
+        setPitch(0.3);
+        setPitch2(1);
+    }
+
     public void intakeGrab() {
-        if (currentPitch > 0.6) {
-            try {
-                setPitch(1);
-                Thread.sleep(200);
-                clawClose();
-                Thread.sleep(200);
-                setPitch(0.7);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+        if (finishedPickUp) {
+            finishedPickUp = false;
+            CompletableFuture.runAsync(() -> {
+                try {
+                    setPitch(0.55);
+                    setPitch2(0.8);
+                    Thread.sleep(200);
+                    clawClose();
+                    Thread.sleep(200);
+                    intakePostGrab();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                } finally {
+                    finishedPickUp = true;
+                }
+            });
         }
     }
 
@@ -80,6 +117,10 @@ public class IntakeClaw extends Component {
     public void setPitch(double position) {
         pitch.setPosition(position);
         currentPitch = position;
+    }
+
+    public void setPitch2(double position) {
+        pitch2.setPosition(position);
     }
 
     public void setYaw(double position) {

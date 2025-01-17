@@ -37,13 +37,5 @@ public class OutputExtensionJoystick extends Component {
             outputExtension.set(-joystickInput);
             goingToPos = false;
         }
-
-        if (gamepads.gamepad2.getButton(GamepadKeys.Button.A)) {
-            outputExtension.setTargetPosition(1000);
-            goingToPos = true;
-        } else if (gamepads.gamepad2.getButton(GamepadKeys.Button.B)) {
-            outputExtension.setTargetPosition(0);
-            goingToPos = true;
-        }
     }
 }
