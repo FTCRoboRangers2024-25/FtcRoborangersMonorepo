@@ -128,7 +128,7 @@ public class AutoYellow extends OpModeBase {
             waitMillis(500);
             drive.followTrajectory(trajectory2);
             clawTransfer.transfer();
-            waitMillis(1500);
+            waitMillis(1700);
             time.reset();
             bool3 = true;
         } else if (!bool5) {
@@ -149,7 +149,7 @@ public class AutoYellow extends OpModeBase {
             waitMillis(500);
             drive.followTrajectory(trajectory5);
             clawTransfer.transfer();
-            waitMillis(1500);
+            waitMillis(1700);
             time.reset();
             bool7 = true;
         } else if (!bool8) {
@@ -171,7 +171,7 @@ public class AutoYellow extends OpModeBase {
                 waitMillis(500);
                 drive.followTrajectory(trajectory7);
                 clawTransfer.transfer();
-                waitMillis(1500);
+                waitMillis(1700);
                 time.reset();
             }
         } else if (!bool10) {
@@ -181,6 +181,7 @@ public class AutoYellow extends OpModeBase {
                 outputClaw.basketPlacePos();
                 waitMillis(500);
                 outputClaw.basketRelease();
+                waitMillis(200);
                 time.reset();
             }
         } else if (!bool11) {

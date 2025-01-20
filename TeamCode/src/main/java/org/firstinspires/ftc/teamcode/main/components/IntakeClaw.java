@@ -39,7 +39,7 @@ public class IntakeClaw extends Component {
                 0.9);
         claw = new CrazyServo(
                 new SimpleServo(hardwareMap, RobotConstants.INTAKE_SERVO_CLAW, 0, 180),
-                0.13,
+                0.2,
                 0.65);
     }
 
@@ -58,13 +58,15 @@ public class IntakeClaw extends Component {
     public void transfer() {
         if (transferDone) {
             transferDone = false;
-            setPitch(0.45);
-            setPitch2(0.3);
+            setPitch(0.5);
+            setPitch2(0.2);
             setYaw(0.5);
             try {
-                Thread.sleep(500);
+                Thread.sleep(300);
+                setPitch2(0.45);
+                Thread.sleep(300);
                 setPitch(0);
-                setPitch2(0.5);
+                setPitch2(0.57);
                 Thread.sleep(300);
             } catch (InterruptedException e) {
 

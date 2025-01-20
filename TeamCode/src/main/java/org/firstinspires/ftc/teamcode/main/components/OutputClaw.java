@@ -59,7 +59,7 @@ public class OutputClaw extends Component {
     }
 
     public void transfer(double yaw) {
-        setArm(0.12);
+        setArm(0.13);
         setPitch(0.62);
         setYaw(yaw);
         openClaw();
@@ -93,9 +93,9 @@ public class OutputClaw extends Component {
                 try {
                     Thread.sleep(500);
                     setPitch(1);
-                    Thread.sleep(400);
+                    Thread.sleep(300);
                     setArm(0.2);
-                    Thread.sleep(600);
+                    Thread.sleep(500);
                     transfer(0.5);
                 } catch (InterruptedException e) {
 
