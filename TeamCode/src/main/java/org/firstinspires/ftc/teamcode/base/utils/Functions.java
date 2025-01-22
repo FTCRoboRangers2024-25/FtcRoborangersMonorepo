@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.base;
+package org.firstinspires.ftc.teamcode.base.utils;
 
 public class Functions {
     public static double linearInterpolation(double a, double b, double t) {
@@ -22,6 +22,13 @@ public class Functions {
     }
 
     public static double targetTolerance(double target, double tolerance, double value) {
+        if (Math.abs(value - target) <= tolerance) {
+            return target;
+        }
+        return value;
+    }
+
+    public static int targetTolerance(int target, int tolerance, int value) {
         if (Math.abs(value - target) <= tolerance) {
             return target;
         }

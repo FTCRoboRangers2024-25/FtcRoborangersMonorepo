@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.base.di;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.base.Gamepads;
+import org.firstinspires.ftc.teamcode.base.utils.Gamepads;
 import org.firstinspires.ftc.teamcode.base.messaging.IMessageBroadcaster;
 import org.firstinspires.ftc.teamcode.base.messaging.StandardMessageBroadcaster;
 
