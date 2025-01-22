@@ -8,15 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class OpModeBase extends OpMode {
-    public final static List<Component> components = new ArrayList<>();
+    private final static List<Component> components = new ArrayList<>();
+
+    protected abstract void startup();
 
     @Override
     public void init() {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
+        startup();
+
         for (Component component : components) {
             component.init();
         }
+
+        telemetry.update();
     }
 
     @Override
@@ -24,6 +30,8 @@ public abstract class OpModeBase extends OpMode {
         for (Component component : components) {
             component.initLoop();
         }
+
+        telemetry.update();
     }
 
     @Override
@@ -31,6 +39,8 @@ public abstract class OpModeBase extends OpMode {
         for (Component component : components) {
             component.start();
         }
+
+        telemetry.update();
     }
 
     @Override
@@ -38,6 +48,8 @@ public abstract class OpModeBase extends OpMode {
         for (Component component : components) {
             component.loop();
         }
+
+        telemetry.update();
     }
 
     @Override
@@ -45,5 +57,11 @@ public abstract class OpModeBase extends OpMode {
         for (Component component : components) {
             component.stop();
         }
+
+        telemetry.update();
+    }
+
+    protected void addComponent(Component component) {
+        components.add(component);
     }
 }
