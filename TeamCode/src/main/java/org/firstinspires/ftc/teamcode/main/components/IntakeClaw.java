@@ -48,6 +48,11 @@ public class IntakeClaw extends Component {
         clawOpen();
     }
 
+    @Override
+    public void start() {
+        intakePreGrab();
+    }
+
     public void intakeInit() {
         setPitch(0.1);
         setYaw(0.5);

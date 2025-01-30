@@ -1,12 +1,9 @@
 package org.firstinspires.ftc.teamcode.main.components;
 
-import static org.firstinspires.ftc.teamcode.base.utils.Functions.targetTolerance;
-
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 
 import org.firstinspires.ftc.teamcode.base.structure.Component;
 import org.firstinspires.ftc.teamcode.base.utils.Gamepads;
-import org.firstinspires.ftc.teamcode.main.Constants;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -34,22 +31,27 @@ public class IntakeClawJoystick extends Component {
 
     @Override
     public void loop() {
-        if (gamepads.gamepad2.getButton(GamepadKeys.Button.Y)) {
-            intakeClaw.intakeInit();
-        } else if (gamepads.gamepad2.getButton(GamepadKeys.Button.B)) {
-            intakeClaw.intakePreGrab();
-        } else if (gamepads.gamepad2.getButton(GamepadKeys.Button.X)) {
+//        if (gamepads.gamepad2.getButton(GamepadKeys.Button.Y)) {
+//            intakeClaw.intakeInit();
+//        } else if (gamepads.gamepad2.getButton(GamepadKeys.Button.B)) {
+//            intakeClaw.intakePreGrab();
+//        } else if (gamepads.gamepad2.getButton(GamepadKeys.Button.X)) {
+//            intakeClaw.intakeGrab();
+//        }
+//
+//        if (gamepads.gamepad2.isDown(GamepadKeys.Button.A) && !flag) {
+//            intakeClaw.clawToggle();
+//            flag = true;
+//        } else if (!gamepads.gamepad2.isDown(GamepadKeys.Button.A) && flag) {
+//            flag = false;
+//        }
+//
+//        double rightJoystick = targetTolerance(0, Constants.STICK_TOLERANCE, gamepads.gamepad2.getLeftX());
+//        intakeClaw.setYaw((-rightJoystick + 1) / 2);
+
+        if (gamepads.gamepad1.isDown(GamepadKeys.Button.A)) {
+            intakeClaw.clawOpen();
             intakeClaw.intakeGrab();
         }
-
-        if (gamepads.gamepad2.isDown(GamepadKeys.Button.A) && !flag) {
-            intakeClaw.clawToggle();
-            flag = true;
-        } else if (!gamepads.gamepad2.isDown(GamepadKeys.Button.A) && flag) {
-            flag = false;
-        }
-
-        double rightJoystick = targetTolerance(0, Constants.STICK_TOLERANCE, gamepads.gamepad2.getLeftX());
-        intakeClaw.setYaw((-rightJoystick + 1) / 2);
     }
 }

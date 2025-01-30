@@ -28,7 +28,11 @@ public class OutputClawJoystick extends Component {
 
     @Override
     public void loop() {
-        if (gamepads.gamepad2.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.5) {
+//        if (gamepads.gamepad2.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.5) {
+//            outputClaw.basketRelease();
+//        }
+
+        if (gamepads.gamepad1.isDown(GamepadKeys.Button.Y)) {
             outputClaw.basketRelease();
         }
 

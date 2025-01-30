@@ -33,7 +33,11 @@ public class ClawTransfer extends Component {
 
     @Override
     public void loop() {
-        if (gamepads.gamepad2.isDown(GamepadKeys.Button.START) && finished) {
+//        if (gamepads.gamepad2.isDown(GamepadKeys.Button.START) && finished) {
+//            transfer();
+//        }
+
+        if (gamepads.gamepad1.isDown(GamepadKeys.Button.START) && finished) {
             transfer();
         }
     }
