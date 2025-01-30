@@ -25,6 +25,9 @@ public final class RobotPorts {
     public static final String EHS4 = "EHS4";
     public static final String EHS5 = "EHS5";
 
+    public static final String EHD0 = "EHD0";
+    public static final String EHD2 = "EHD2";
+
     public static final String IMU = "imu";
     public static final String ODO = "odo";
 }

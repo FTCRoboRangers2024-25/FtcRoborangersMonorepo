@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class OpModeBase extends OpMode {
-    private final static List<Component> components = new ArrayList<>();
+    private final List<Component> components = new ArrayList<>();
 
     protected abstract void startup();
 
