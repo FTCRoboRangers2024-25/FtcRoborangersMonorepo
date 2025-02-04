@@ -27,8 +27,8 @@ public class MecanumCameraAligner extends Component {
         this.mecanumBase = mecanumBase;
         this.camera = camera;
 
-        forwardController.setTolerance(22);
-        strafeController.setTolerance(22);
+        forwardController.setTolerance(0);
+        strafeController.setTolerance(0);
     }
 
     @Override
@@ -118,5 +118,9 @@ public class MecanumCameraAligner extends Component {
             mecanumBase.stop();
             return true;
         }
+    }
+
+    public void stopAligning() {
+        mecanumBase.robotCentric(0, 0, 0);
     }
 }

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.main;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.base.di.MainModule;
@@ -20,6 +21,7 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import javax.inject.Inject;
 
 @Autonomous(name = "Old Auto Yellow")
+@Disabled
 public class OldYellowAuto extends AutonomousBase {
     @Inject
     public SampleMecanumDrive drive;

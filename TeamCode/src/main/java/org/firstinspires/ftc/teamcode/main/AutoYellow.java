@@ -56,7 +56,7 @@ public class AutoYellow extends AutonomousBase {
 
         main.inject(this);
 
-        Pose2d basketPos = new Pose2d(2, 25, Math.toRadians(-45));
+        Pose2d basketPos = new Pose2d(6, 25, Math.toRadians(-45));
 
         trajectory3 = drive.trajectoryBuilder(new Pose2d())
                 .lineToLinearHeading(basketPos)
@@ -90,8 +90,9 @@ public class AutoYellow extends AutonomousBase {
         actions.addAction(() -> {
             drive.update();
             outputExtension.setTargetPosition(1580);
+            time.reset();
             return !drive.isBusy();
-        }).addAction(() -> {
+        }).addAction(() -> time.time() > 300).addAction(() -> {
             outputClaw.basketPlacePos();
             time.reset();
             drive.followTrajectorySequenceAsync(trajectory1);
@@ -106,7 +107,7 @@ public class AutoYellow extends AutonomousBase {
             outputExtension.setTargetPosition(0);
             time.reset();
             return !drive.isBusy();
-        }).addAction(() -> (camera.alignYellow() && time.time() > 1200) || time.time() > 2000).addAction(() -> {
+        }).addAction(() -> (camera.alignYellow() && time.time() > 1200) || time.time() > 1200).addAction(() -> {
             intakeClaw.intakeGrab();
             time.reset();
             drive.followTrajectoryAsync(trajectory2);
@@ -136,7 +137,7 @@ public class AutoYellow extends AutonomousBase {
             drive.update();
             time.reset();
             return !drive.isBusy();
-        }).addAction(() -> (camera.alignYellow() && time.time() > 1200) || time.time() > 2000).addAction(() -> {
+        }).addAction(() -> (camera.alignYellow() && time.time() > 1200) || time.time() > 1200).addAction(() -> {
             intakeClaw.intakeGrab();
             time.reset();
             drive.followTrajectoryAsync(trajectory5);
@@ -165,9 +166,13 @@ public class AutoYellow extends AutonomousBase {
             intakeClaw.intakePreGrab();
             outputExtension.setTargetPosition(0);
             time.reset();
-            intakeClaw.setYaw(1);
             return !drive.isBusy();
-        }).addAction(() -> (camera.alignYellow() && time.time() > 1200) || time.time() > 2000).addAction(() -> {
+        }).addAction(() -> (camera.alignYellow() && time.time() > 1200) || time.time() > 1200).addAction(() -> {
+            camera.stopAligning();
+            intakeClaw.setYaw(1);
+            time.reset();
+            return true;
+        }).addAction(() -> time.time() > 500).addAction(() -> {
             intakeClaw.intakeGrab();
             time.reset();
             drive.followTrajectoryAsync(trajectory7);

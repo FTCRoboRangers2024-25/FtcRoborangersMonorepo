@@ -37,7 +37,7 @@ public class ClawTransfer extends Component {
 //            transfer();
 //        }
 
-        if (gamepads.gamepad1.isDown(GamepadKeys.Button.START) && finished) {
+        if (gamepads.gamepad1.gamepad.touchpad && finished) {
             transfer();
         }
     }

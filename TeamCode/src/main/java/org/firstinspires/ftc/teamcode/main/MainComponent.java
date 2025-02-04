@@ -14,4 +14,6 @@ public interface MainComponent {
     void inject(MainTeleOpBlue t);
     void inject(AutoYellow t);
     void inject(OldYellowAuto t);
+
+    void inject(CameraTest cameraTest);
 }

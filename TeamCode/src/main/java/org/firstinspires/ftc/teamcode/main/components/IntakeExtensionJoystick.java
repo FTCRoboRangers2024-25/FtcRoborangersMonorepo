@@ -19,8 +19,7 @@ public class IntakeExtensionJoystick extends Component {
     private final ToggleButtonReader joystickToggle;
 
     private double currentExtension;
-
-    private boolean flag;
+    private boolean invert;
 
     @Inject
     public IntakeExtensionJoystick(Gamepads gamepads, IntakeExtension intakeExtension) {
@@ -58,10 +57,14 @@ public class IntakeExtensionJoystick extends Component {
             currentExtension = 0;
         }
 
-        intakeExtension.extendIntake(currentExtension);
+        intakeExtension.extendIntake(invert ? (currentExtension == 1 ? 0 : 1) : currentExtension);
     }
 
     public void resetIntakeJoystick() {
-        currentExtension = 0;
+        if (currentExtension == 1) {
+            invert = true;
+        } else if (currentExtension == 0) {
+            invert = false;
+        }
     }
 }

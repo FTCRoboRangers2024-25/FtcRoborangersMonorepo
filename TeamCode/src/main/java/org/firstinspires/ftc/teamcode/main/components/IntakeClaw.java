@@ -21,6 +21,9 @@ public class IntakeClaw extends Component {
 
     private boolean transferDone = true;
 
+    public boolean clawJoystickPosChangedFlag = false;
+    public double clawJoystickTargetYawSet;
+
     @Inject
     public IntakeClaw(HardwareMap hardwareMap) {
         pitch = new CrazyServo(
@@ -95,6 +98,10 @@ public class IntakeClaw extends Component {
             finishedPickUp = false;
             CompletableFuture.runAsync(() -> {
                 try {
+                    if (clawClosed) {
+                        clawOpen();
+                        Thread.sleep(300);
+                    }
                     setPitch(0.55);
                     setPitch2(0.8);
                     Thread.sleep(200);
@@ -131,6 +138,18 @@ public class IntakeClaw extends Component {
 
     public void setYaw(double position) {
         yaw.setPosition(position);
+
+        clawJoystickPosChangedFlag = true;
+        clawJoystickTargetYawSet = position;
+    }
+
+    public void setYaw(double position, boolean ignoreAlertPos) {
+        yaw.setPosition(position);
+
+        if (!ignoreAlertPos) {
+            clawJoystickPosChangedFlag = true;
+            clawJoystickTargetYawSet = position;
+        }
     }
 
     public void clawToggle() {

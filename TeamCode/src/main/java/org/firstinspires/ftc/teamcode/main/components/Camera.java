@@ -73,7 +73,7 @@ public class Camera extends Component {
     }
 
     public class ColorObjectPipeline extends OpenCvPipeline {
-        private final Scalar LOWER_YELLOW = new Scalar(20, 100, 100);
+        private final Scalar LOWER_YELLOW = new Scalar(15, 80, 80);
         private final Scalar UPPER_YELLOW = new Scalar(30, 255, 255);
         private final Scalar LOWER_BLUE = new Scalar(100, 150, 50);
         private final Scalar UPPER_BLUE = new Scalar(140, 255, 255);
