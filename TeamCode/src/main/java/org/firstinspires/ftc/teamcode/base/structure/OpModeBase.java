@@ -24,6 +24,8 @@ public abstract class OpModeBase extends OpMode {
 
     private final List<Component> components = new ArrayList<>();
 
+    private double oldTime = 0;
+
     protected abstract void startup();
 
     @Override
@@ -66,6 +68,11 @@ public abstract class OpModeBase extends OpMode {
 
     @Override
     public void loop() {
+        double time = getRuntime();
+        double loopTime = time - oldTime;
+        telemetry.addLine("Loop time: " + (int)(loopTime/1000) + "ms");
+        oldTime = time;
+
         for (Component component : components) {
             component.loop();
         }

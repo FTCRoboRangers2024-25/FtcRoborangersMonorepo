@@ -32,6 +32,12 @@ public class PinPointLocalizer implements Localizer {
         pinpointDriver.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
         pinpointDriver.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.FORWARD);
         pinpointDriver.resetPosAndIMU();
+
+        telemetry.addData("Status", "Initialized");
+        telemetry.addData("X offset", pinpointDriver.getXOffset());
+        telemetry.addData("Y offset", pinpointDriver.getYOffset());
+        telemetry.addData("Device Version Number:", pinpointDriver.getDeviceVersion());
+        telemetry.addData("Device Scalar", pinpointDriver.getYawScalar());
     }
 
     @NonNull
@@ -55,6 +61,8 @@ public class PinPointLocalizer implements Localizer {
 
     @Override
     public void update() {
+        pinpointDriver.update();
+
         Pose2d pos = getPoseEstimate();
         String data = String.format(Locale.US, "{X: %.3f, Y: %.3f, H: %.3f}", pos.getX(), pos.getY(), pos.getHeading());
         telemetry.addData("Position", data);

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
-// TO BE TESTED
 public class ActionQueue {
     private final List<BooleanSupplier> actions = new ArrayList<>();
     private int currentActionIndex = 0;
