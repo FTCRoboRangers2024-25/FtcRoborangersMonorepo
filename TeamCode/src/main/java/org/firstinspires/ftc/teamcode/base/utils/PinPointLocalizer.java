@@ -21,23 +21,23 @@ import javax.inject.Singleton;
 @Singleton
 public class PinPointLocalizer implements Localizer {
     private final GoBildaPinpointDriver pinpointDriver;
-    private final Telemetry telemetry;
+//    private final Telemetry telemetry;
 
     @Inject
-    public PinPointLocalizer(HardwareMap hardwareMap, Telemetry telemetry) {
+    public PinPointLocalizer(HardwareMap hardwareMap) {
         pinpointDriver = hardwareMap.get(GoBildaPinpointDriver.class, RobotPorts.ODO);
-        this.telemetry = telemetry;
+//        this.telemetry = telemetry;
 
         pinpointDriver.setOffsets(0, 0);
         pinpointDriver.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
         pinpointDriver.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.FORWARD);
         pinpointDriver.resetPosAndIMU();
 
-        telemetry.addData("Status", "Initialized");
-        telemetry.addData("X offset", pinpointDriver.getXOffset());
-        telemetry.addData("Y offset", pinpointDriver.getYOffset());
-        telemetry.addData("Device Version Number:", pinpointDriver.getDeviceVersion());
-        telemetry.addData("Device Scalar", pinpointDriver.getYawScalar());
+//        telemetry.addData("Status", "Initialized");
+//        telemetry.addData("X offset", pinpointDriver.getXOffset());
+//        telemetry.addData("Y offset", pinpointDriver.getYOffset());
+//        telemetry.addData("Device Version Number:", pinpointDriver.getDeviceVersion());
+//        telemetry.addData("Device Scalar", pinpointDriver.getYawScalar());
     }
 
     @NonNull
@@ -63,16 +63,16 @@ public class PinPointLocalizer implements Localizer {
     public void update() {
         pinpointDriver.update();
 
-        Pose2d pos = getPoseEstimate();
-        String data = String.format(Locale.US, "{X: %.3f, Y: %.3f, H: %.3f}", pos.getX(), pos.getY(), pos.getHeading());
-        telemetry.addData("Position", data);
-
-        Pose2d vel = getPoseVelocity();
-        String velocity = String.format(Locale.US,"{XVel: %.3f, YVel: %.3f, HVel: %.3f}", vel.getX(), vel.getY(), vel.getHeading());
-        telemetry.addData("Velocity", velocity);
-
-        telemetry.addData("Status", pinpointDriver.getDeviceStatus());
-
-        telemetry.addData("Pinpoint Frequency", pinpointDriver.getFrequency());
+//        Pose2d pos = getPoseEstimate();
+//        String data = String.format(Locale.US, "{X: %.3f, Y: %.3f, H: %.3f}", pos.getX(), pos.getY(), pos.getHeading());
+//        telemetry.addData("Position", data);
+//
+//        Pose2d vel = getPoseVelocity();
+//        String velocity = String.format(Locale.US,"{XVel: %.3f, YVel: %.3f, HVel: %.3f}", vel.getX(), vel.getY(), vel.getHeading());
+//        telemetry.addData("Velocity", velocity);
+//
+//        telemetry.addData("Status", pinpointDriver.getDeviceStatus());
+//
+//        telemetry.addData("Pinpoint Frequency", pinpointDriver.getFrequency());
     }
 }

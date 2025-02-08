@@ -9,8 +9,6 @@ import org.firstinspires.ftc.teamcode.base.di.MainBaseComponent;
 import org.firstinspires.ftc.teamcode.base.di.MainModule;
 import org.firstinspires.ftc.teamcode.base.messaging.IMessageBroadcaster;
 import org.firstinspires.ftc.teamcode.base.utils.Gamepads;
-import org.firstinspires.ftc.teamcode.testing.DaggerMainComponent;
-import org.firstinspires.ftc.teamcode.testing.MainComponent;
 
 import java.util.ArrayList;
 import java.util.HashSet;
