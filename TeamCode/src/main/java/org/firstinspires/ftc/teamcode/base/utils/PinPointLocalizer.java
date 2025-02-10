@@ -13,19 +13,12 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 
-import java.util.Locale;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-@Singleton
 public class PinPointLocalizer implements Localizer {
     private final GoBildaPinpointDriver pinpointDriver;
 //    private final Telemetry telemetry;
 
-    @Inject
     public PinPointLocalizer(HardwareMap hardwareMap) {
-        pinpointDriver = hardwareMap.get(GoBildaPinpointDriver.class, RobotPorts.ODO);
+        pinpointDriver = hardwareMap.get(GoBildaPinpointDriver.class, RobotPorts.CHI2C0);
 //        this.telemetry = telemetry;
 
         pinpointDriver.setOffsets(0, 0);

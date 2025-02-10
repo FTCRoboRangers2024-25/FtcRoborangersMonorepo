@@ -2,9 +2,12 @@ package org.firstinspires.ftc.teamcode.main.components.joystick;
 
 import static org.firstinspires.ftc.teamcode.base.utils.Functions.targetTolerance;
 
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.base.structure.Component;
 import org.firstinspires.ftc.teamcode.base.utils.Gamepads;
+import org.firstinspires.ftc.teamcode.base.utils.RobotPorts;
 import org.firstinspires.ftc.teamcode.main.components.ClawDifferential;
 
 import javax.inject.Inject;
@@ -17,9 +20,9 @@ public class ClawDifferentialJoystick extends Component {
     private final Telemetry telemetry;
 
     @Inject
-    public ClawDifferentialJoystick(Gamepads gamepads, ClawDifferential clawDifferential, Telemetry telemetry) {
+    public ClawDifferentialJoystick(HardwareMap hardwareMap, Gamepads gamepads, Telemetry telemetry) {
         this.gamepads = gamepads;
-        this.clawDifferential = clawDifferential;
+        this.clawDifferential = new ClawDifferential(hardwareMap, RobotPorts.CHS0, RobotPorts.CHS3);
         this.telemetry = telemetry;
     }
 

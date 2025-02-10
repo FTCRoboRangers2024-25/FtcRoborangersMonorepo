@@ -12,8 +12,8 @@ public class RestrictedMotor {
     private double kStatic = 0;
 
     /**
-     * IsLow returns true when the speed of the motor shouldn't be negative. <br/>
-     * IsHigh returns true when the speed of the motor shouldn't be positive. <br/>
+     * @param isLow returns true when the speed of the motor shouldn't be negative. <br/>
+     * @param isHigh returns true when the speed of the motor shouldn't be positive. <br/>
      */
     public RestrictedMotor(Motor motor, BooleanSupplier isLow, BooleanSupplier isHigh) {
         this.motor = motor;
@@ -22,9 +22,9 @@ public class RestrictedMotor {
     }
 
     /**
-     * IsLow returns true when the speed of the motor shouldn't be negative. <br/>
-     * IsHigh returns true when the speed of the motor shouldn't be positive. <br/>
-     * kStatic is a constant offset of the output of the motor.
+     * @param isLow returns true when the speed of the motor shouldn't be negative. <br/>
+     * @param isHigh returns true when the speed of the motor shouldn't be positive. <br/>
+     * @param kStatic is a constant offset of the output of the motor.
      */
     public RestrictedMotor(Motor motor, BooleanSupplier isLow, BooleanSupplier isHigh, double kStatic) {
         this(motor, isLow, isHigh);
@@ -46,5 +46,13 @@ public class RestrictedMotor {
         }
 
         motor.set(speed + kStatic);
+    }
+
+    public int getCurrentPosition() {
+        return motor.getCurrentPosition();
+    }
+
+    public void resetEncoder() {
+        motor.resetEncoder();
     }
 }

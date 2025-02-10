@@ -6,26 +6,17 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.base.structure.Component;
-import org.firstinspires.ftc.teamcode.base.utils.RobotPorts;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-@Singleton
-public class ClawDifferential extends Component {
+public class ClawDifferential {
     private final ServoEx servoLeft, servoRight;
 
     private double pitchAngle, yawDeltaServoAngle;
 
-    @Inject
-    public ClawDifferential(HardwareMap hardwareMap) {
-        servoLeft = new SimpleServo(hardwareMap, RobotPorts.CHS0, 0, 355);
-        servoRight = new SimpleServo(hardwareMap, RobotPorts.CHS3, 0, 355);
-    }
+    private double pitchInversionMultiplier = 1, yawInversionMultiplier = 1;
 
-    @Override
-    public void init() {
+    public ClawDifferential(HardwareMap hardwareMap, String servoLeftPort, String servoRightPort) {
+        servoLeft = new SimpleServo(hardwareMap, servoLeftPort, 0, 355);
+        servoRight = new SimpleServo(hardwareMap, servoRightPort, 0, 355);
+
         setPitch(0.5);
         setYaw(0);
     }
@@ -50,8 +41,16 @@ public class ClawDifferential extends Component {
         updateServos();
     }
 
+    public void setPitchInverted(boolean inverted) {
+        pitchInversionMultiplier = inverted ? -1 : 1;
+    }
+
+    public void setYawInverted(boolean inverted) {
+        yawInversionMultiplier = inverted ? -1 : 1;
+    }
+
     private void updateServos() {
-        servoLeft.turnToAngle(pitchAngle - yawDeltaServoAngle);
-        servoRight.turnToAngle(pitchAngle + yawDeltaServoAngle);
+        servoLeft.turnToAngle(pitchAngle * pitchInversionMultiplier - yawDeltaServoAngle * yawInversionMultiplier);
+        servoRight.turnToAngle(pitchAngle * pitchInversionMultiplier + yawDeltaServoAngle * yawInversionMultiplier);
     }
 }

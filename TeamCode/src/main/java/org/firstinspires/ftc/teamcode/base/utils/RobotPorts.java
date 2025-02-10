@@ -61,7 +61,14 @@ public final class RobotPorts {
     public static final String EHA2 = "EHA2";
     public static final String EHA3 = "EHA3";
 
-    // IMU and Other Sensors
-    public static final String IMU = "imu";
-    public static final String ODO = "odo";
+    // Control Hub & Expansion Hub I2C Ports
+    public static final String CHI2C0 = "CHI2C0";
+    public static final String CHI2C1 = "CHI2C1";
+    public static final String CHI2C2 = "CHI2C2";
+    public static final String CHI2C3 = "CHI2C3";
+
+    public static final String EHI2C0 = "EHI2C0";
+    public static final String EHI2C1 = "EHI2C1";
+    public static final String EHI2C2 = "EHI2C2";
+    public static final String EHI2C3 = "EHI2C3";
 }
