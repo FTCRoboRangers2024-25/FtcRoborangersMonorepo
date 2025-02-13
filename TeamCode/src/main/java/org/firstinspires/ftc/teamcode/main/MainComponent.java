@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.main;
 
 import org.firstinspires.ftc.teamcode.base.di.MainModule;
+import org.firstinspires.ftc.teamcode.main.opmodes.CameraTesting;
 import org.firstinspires.ftc.teamcode.main.opmodes.ClawDifferentialTesting;
 import org.firstinspires.ftc.teamcode.main.opmodes.IntakeExtensionTesting;
 import org.firstinspires.ftc.teamcode.main.opmodes.IntakeHorizontalTesting;
@@ -20,4 +21,6 @@ public interface MainComponent {
     void inject(IntakeExtensionTesting intakeExtensionTesting);
 
     void inject(IntakeHorizontalTesting intakeHorizontalTesting);
+
+    void inject(CameraTesting cameraTesting);
 }
